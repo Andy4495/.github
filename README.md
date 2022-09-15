@@ -1,5 +1,7 @@
 # .github
 
+[![Check Markdown Links](https://github.com/Andy4495/.github/actions/workflows/checkmarkdownlinks.yml/badge.svg)](https://github.com/Andy4495/.github/actions/workflows/checkmarkdownlinks.yml)
+
 General templates and starter workflows for my repos.
 
 ## License
