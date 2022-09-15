@@ -1,0 +1,4 @@
+{
+    "name": "Arduino Compile Sketches",
+    "description": "Workflow to compile various platforms using Arduino CLI.",
+}
