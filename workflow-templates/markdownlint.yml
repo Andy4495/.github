@@ -1,0 +1,34 @@
+# Uses: https://github.com/marketplace/actions/markdownlint-cli
+name: markdownlint check
+
+# Be sure to also create a file named "markdownlintconfig.json" with the following contents: 
+# {
+#    "MD013": false
+# }
+
+on: 
+  push:
+    paths: 
+      - '**.md'
+  workflow_dispatch:
+    inputs:
+      message:
+        description: Message to display in job summary
+        required: false
+        type: string
+
+jobs:
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: nosborn/github-action-markdown-cli@v3
+        with:
+          files: '*.md **/*.md'
+          config_file: ./.github/workflows/markdownlintconfig.json
+      - name: Print the job summary
+        if: ${{ inputs.message }}
+        run: |
+          echo ${{ inputs.message }} >$GITHUB_STEP_SUMMARY
+            

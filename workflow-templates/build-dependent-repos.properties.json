@@ -1,0 +1,4 @@
+{
+    "name": "Build dependent repos",
+    "description": "Workflow to force re-build on repos that are dependent on this library when a new release is published."
+}

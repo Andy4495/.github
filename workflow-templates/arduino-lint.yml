@@ -1,0 +1,33 @@
+# From: https://github.com/marketplace/actions/arduino-arduino-lint-action
+# Use this action for libraries published to the Arduino Library Manager
+
+# This action is configured to be used _after_ a library has been successfully
+# submitted to the Arduino Library Manager; it is configured with the "update" 
+# check. You should run the Arduino lint tool locally at the command line before
+# submitting a library for the first time (using the "submit" option)
+
+name: Arduino Lint
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: Message to display in job summary
+        required: false
+        type: string
+
+jobs:
+  arduino-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: arduino/arduino-lint-action@v1
+        with:
+          library-manager: update
+          compliance: strict
+          verbose: true
+      - name: Print the job summary
+        if: ${{ inputs.message }}
+        run: |
+          echo ${{ inputs.message }} >$GITHUB_STEP_SUMMARY

@@ -1,0 +1,4 @@
+{
+    "name": "Markdown lint check",
+    "description": "Workflow to run markdownlint on Markdown files located in the repo."
+}
