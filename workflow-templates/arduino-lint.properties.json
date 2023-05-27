@@ -1,4 +1,4 @@
 {
     "name": "Arduino Lint",
-    "description": "Runs official Arduino lint tool fo verify repo meets Arduino Library Manager submission update rules."
+    "description": "Runs official Arduino lint tool to verify repo meets Arduino Library Manager submission update rules."
 }
