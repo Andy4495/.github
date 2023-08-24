@@ -48,13 +48,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - uses: actions/setup-java@v3
+      - name: setup-python (when running locally for nektos/act compatibility)
+        if: ${{ env.ACT }}
+        uses: actions/setup-python@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
-          java-package: 'jre'
-      - run: | 
-          if [ ! -f /usr/bin/java ] ; then ln -s $JAVA_HOME/bin/java /usr/bin/java ; fi
+          python-version: '>=3.11'
+      - name: Install Poetry (when running locally for nektos/act compatibility)
+        if: ${{ env.ACT }}
+        uses: snok/install-poetry@v1
+      - name: Install pipx (when running locally for nektos/act compatibility)
+        if: ${{ env.ACT }}
+        run: pip install pipx
       - uses: arduino/compile-sketches@v1
         with:
           fqbn: ${{ matrix.fqbn }}
