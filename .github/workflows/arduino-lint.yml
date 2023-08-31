@@ -9,9 +9,6 @@ on:
         description: Message to display in job summary
         required: false
         type: string
-      token:
-        required: true
-        type: string
 
 jobs:
   arduino-lint:
@@ -23,7 +20,6 @@ jobs:
           library-manager: update
           compliance: strict
           verbose: true
-          token: ${{ inputs.token }}
       - name: Print the job summary
         if: ${{ inputs.message }}
         run: |
