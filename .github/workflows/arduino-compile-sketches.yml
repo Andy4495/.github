@@ -22,6 +22,12 @@ on:
       platform-sourceurl:
         required: true
         type: string
+      platform-version:
+        required: true
+        type: string
+      libraries:
+        required: true
+        type: string
 
 jobs:
   compile-sketches: 
@@ -47,17 +53,13 @@ jobs:
           fqbn: ${{ inputs.fqbn }}
           platforms: |
             - name: ${{ inputs.platform-name }}
-              version: latest
+              version: ${{ inputs.platform-version }}
               source-url: ${{ inputs.platform-sourceurl }}
           sketch-paths: |
             - .
           verbose: true
           enable-warnings-report: true
-          libraries: |
-            - source-path: ./
-            # Add library dependencies here: 
-            # - source-url: https://github.com/<owner-name>/<repo-name>.git
-            # - name: name-of-library-registered-with-arduino-library-manager
+          libraries: ${{ inputs.libraries }}
       - name: Print the job summary
         if: ${{ inputs.message }}
         run: |
