@@ -36,7 +36,7 @@ jobs:
         with:
           base-branch: main
           use-verbose-mode: yes
-          # config file is used to flag HTTP result code 429 as a valid "alive" result
+          # config file is used to flag several HTTP result codes as a valid "alive" results
           config-file: './.github/workflows/mlc_config.json'           
       - name: Print the job summary
         if: ${{ inputs.message }}

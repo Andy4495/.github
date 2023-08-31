@@ -1,0 +1,72 @@
+# Adapted from: https://github.com/marketplace/actions/compile-arduino-sketches
+# 
+# To customize:
+#  - Select which platforms to build and edit the matrix section below
+#  - Add library dependencies as needed for this repo in the libraries section below
+#
+name: Arduino Compile Sketches
+
+on: 
+  push:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: Message to display in job summary
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      message:
+        description: Message to display in job summary
+        required: false
+        type: string
+      fqbn:
+        required: true
+        type: string
+      platform-name:
+        required: true
+        type: string
+      platform-sourceurl:
+        required: true
+        type: string
+
+jobs:
+  compile-sketches: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Clone compile-sketches to get python version (using nektos/act locally)
+        if: ${{ env.ACT }}
+        run: cd /tmp; git clone 'https://github.com/arduino/compile-sketches'
+      - name: setup-python (when running locally for nektos/act compatibility)
+        if: ${{ env.ACT }}
+        uses: actions/setup-python@v4
+        with:
+          python-version-file: /tmp/compile-sketches/.python-version
+      - name: Install Poetry (when running locally for nektos/act compatibility)
+        if: ${{ env.ACT }}
+        uses: snok/install-poetry@v1
+      - name: Install pipx (when running locally for nektos/act compatibility)
+        if: ${{ env.ACT }}
+        run: pip install pipx
+      - uses: arduino/compile-sketches@v1
+        with:
+          fqbn: ${{ inputs.fqbn }}
+          platforms: |
+            - name: ${{ inputs.platform-name }}
+              version: latest
+              source-url: ${{ inputs.platform-sourceurl }}
+          sketch-paths: |
+            - .
+          verbose: true
+          enable-warnings-report: true
+          libraries: |
+            - source-path: ./
+            # Add library dependencies here: 
+            # - source-url: https://github.com/<owner-name>/<repo-name>.git
+            # - name: name-of-library-registered-with-arduino-library-manager
+      - name: Print the job summary
+        if: ${{ inputs.message }}
+        run: |
+          echo ${{ inputs.message }} >$GITHUB_STEP_SUMMARY
+
