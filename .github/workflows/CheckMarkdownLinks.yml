@@ -20,6 +20,7 @@ on:
         description: Message to display in job summary
         required: false
         type: string
+  workflow_call:
 
 jobs:
   markdown-link-check:
