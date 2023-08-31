@@ -3,14 +3,6 @@
 name: Build Dependent Repos
 
 on: 
-  release:
-    types: [published,edited]
-  workflow_dispatch:
-    inputs:
-      message:
-        description: Message to display in job summary
-        required: false
-        type: string
   workflow_call:
     inputs:
       message:

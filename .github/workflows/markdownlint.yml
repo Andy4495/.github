@@ -2,9 +2,6 @@
 name: markdownlint check
 
 on: 
-  push:
-    paths: 
-      - '**.md'
   workflow_dispatch:
     inputs:
       message:
