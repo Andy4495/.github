@@ -1,4 +1,10 @@
 # Uses: https://github.com/marketplace/actions/markdownlint-cli
+#
+# Be sure to also create a file named "markdownlintconfig.json" with the following contents: 
+# {
+#     "MD013": false
+# }
+
 name: markdownlint check
 
 on: 
