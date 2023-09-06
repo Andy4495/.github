@@ -1,4 +1,4 @@
 {
     "name": "Check Markdown Links",
-    "description": "Workflow to check if URL references in Markdown files are valid."
+    "description": "Workflow to check if URL references in Markdown files are valid. Be sure to also create mlc_config.json file."
 }
