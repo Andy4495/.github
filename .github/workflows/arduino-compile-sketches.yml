@@ -39,7 +39,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Clone compile-sketches to get python version (using nektos/act locally)
         if: ${{ env.ACT }}
-        run: cd /tmp; git clone 'https://github.com/arduino/compile-sketches'
+        run: cd /tmp; if [ ! -d compile-sketches ]; git clone 'https://github.com/arduino/compile-sketches'; fi
       - name: setup-python (when running locally for nektos/act compatibility)
         if: ${{ env.ACT }}
         uses: actions/setup-python@v4
