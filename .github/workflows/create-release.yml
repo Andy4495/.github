@@ -9,6 +9,18 @@ on:
         description: Release tag name
         required: true
         type: string
+      draft:
+        description: Marks release as a draft release
+        type: boolean
+        default: false
+      prerelease:
+        description: Marks release as pre-release
+        type: boolean
+        default: false
+      skipIfReleaseExists:
+        description: Skip action if a non-draft release already exists
+        type: boolean
+        default: true
 
 jobs:
   release:
@@ -21,8 +33,10 @@ jobs:
       with:
         generateReleaseNotes: true
         name: ${{ github.event.repository.name }} ${{ inputs.tag }}
-        skipIfReleaseExists: true
+        skipIfReleaseExists: ${{ inputs.skipIfReleaseExists }}
         tag: ${{ inputs.tag }}
+        draft: ${{ inputs.draft }}
+        prerelease: ${{ inputs.prerelease }}
     - name: Print the job summary
       run: |
         echo Created release ${{ inputs.tag }} >$GITHUB_STEP_SUMMARY
