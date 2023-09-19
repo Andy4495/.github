@@ -1,8 +1,4 @@
 # Adapted from: https://github.com/marketplace/actions/compile-arduino-sketches
-# 
-# To customize:
-#  - Select which platforms to build and edit the matrix section below
-#  - Add library dependencies as needed for this repo in the libraries section below
 #
 name: Arduino Compile Sketches
 
