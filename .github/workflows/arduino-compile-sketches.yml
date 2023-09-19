@@ -48,9 +48,9 @@ jobs:
       - name: Install Poetry (when running locally for nektos/act compatibility)
         if: ${{ env.ACT }}
         uses: snok/install-poetry@v1
-      - name: Install pipx (when running locally for nektos/act compatibility)
-        if: ${{ env.ACT }}
-        run: pip install pipx
+#      - name: Install pipx (when running locally for nektos/act compatibility)
+#        if: ${{ env.ACT }}
+#        run: pip install pipx
       - name: Copy file if necessary
         if: ${{ inputs.copyfile }}
         run: |
