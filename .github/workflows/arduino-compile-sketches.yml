@@ -51,6 +51,9 @@ jobs:
 #      - name: Install pipx (when running locally for nektos/act compatibility)
 #        if: ${{ env.ACT }}
 #        run: pip install pipx
+      - name: Update PATH
+        run: |
+          echo "/root/.local/bin" >> $GITHUB_PATH
       - name: Copy file if necessary
         if: ${{ inputs.copyfile }}
         run: |
