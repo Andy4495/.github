@@ -37,14 +37,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Clone compile-sketches to get python version (using nektos/act locally)
-        if: ${{ env.ACT }}
-        run: cd /tmp; if [ ! -d compile-sketches ]; then git clone 'https://github.com/arduino/compile-sketches'; fi
-      - name: setup-python (when running locally for nektos/act compatibility)
-        if: ${{ env.ACT }}
-        uses: actions/setup-python@v4
-        with:
-          python-version-file: /tmp/compile-sketches/.python-version
+#      - name: Clone compile-sketches to get python version (using nektos/act locally)
+#        if: ${{ env.ACT }}
+#        run: cd /tmp; if [ ! -d compile-sketches ]; then git clone 'https://github.com/arduino/compile-sketches'; fi
+#      - name: setup-python (when running locally for nektos/act compatibility)
+#        if: ${{ env.ACT }}
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version-file: /tmp/compile-sketches/.python-version
       - name: Install Poetry (when running locally for nektos/act compatibility)
         if: ${{ env.ACT }}
         uses: snok/install-poetry@v1
