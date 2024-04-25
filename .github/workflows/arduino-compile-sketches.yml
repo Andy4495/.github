@@ -41,7 +41,7 @@ jobs:
         if: ${{ inputs.copyfile }}
         run: |
           cp ${{ inputs.copyfile }}-template.h ${{ inputs.copyfile }}.h
-      - uses: arduino/compile-sketches@v1
+      - uses: arduino/compile-sketches@main
         with:
           fqbn: ${{ inputs.fqbn }}
           platforms: |
