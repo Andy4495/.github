@@ -15,45 +15,20 @@ on:
         description: Message to display in job summary
         required: false
         type: string
+      additional-args:
+        description: Additional command-line arguments (see https://github.com/lycheeverse/lychee#commandline-parameters)
+        required: false
+        type: string
   workflow_call:
     inputs:
       message:
         description: Message to display in job summary
         required: false
         type: string
-      verbose:
-        description: verbosity level 
-        required: false
-        type: string
-        default: -v
-      progress-bar:
-        description: display progress bar
-        required: false
-        type: string
-        default: --no-progress
-      valid-codes:
-        description: valid http return status codes
-        required: false
-        type: string
-        default: -a '200,403,429,500'
-      base-directory:
-        description: root directory to check relative URLs
-        required: false
-        type: string
-        default: .
-      fail-mode:
-        description: true=fail action on failed check
-        type: boolean
-        default: true
       additional-args:
         description: Additional command-line arguments (see https://github.com/lycheeverse/lychee#commandline-parameters)
         required: false
         type: string
-      input-files:
-        description: Files to check links in
-        required: false
-        type: string
-        default: ./**/*.md
 
 jobs:
   link-checker:
@@ -66,8 +41,8 @@ jobs:
         with:
           # args: --base . --verbose --no-progress -a '200,403,429,500' './**/*.md' 
           # args: --config ./.github/workflows/lychee.toml './**/*.md'
-          args: ${{ inputs.verbose }} ${{ inputs.progress-bar }} ${{ inputs.valid-codes }} ${{ inputs.base-directory }} ${{ inputs.fail-mode }} ${{inputs.additional-args }} ${{ inputs.input-files }}
-          fail: ${{ inputs.message }}
+          args: --verbose --no-progress -a '200,403,429,500' --base . ${{inputs.additional-args }} ./**/*.md
+          fail: true
       - name: Print the job summary
         if: ${{ inputs.message }}
         run: |
