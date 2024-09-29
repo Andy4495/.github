@@ -15,8 +15,8 @@ on:
         description: Message to display in job summary
         required: false
         type: string
-      additional-args:
-        description: Additional command-line arguments (see https://github.com/lycheeverse/lychee#commandline-parameters)
+      override-args:
+        description: Override default arguments (see https://github.com/lycheeverse/lychee#commandline-parameters)
         required: false
         type: string
   workflow_call:
@@ -25,8 +25,8 @@ on:
         description: Message to display in job summary
         required: false
         type: string
-      additional-args:
-        description: Additional command-line arguments (see https://github.com/lycheeverse/lychee#commandline-parameters)
+      override-args:
+        description: Override default arguments (see https://github.com/lycheeverse/lychee#commandline-parameters)
         required: false
         type: string
 
@@ -35,13 +35,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Link Checker
-        id: lychee
+      - name: Link Checker default args
+        if: ${{ !inputs.override-args }}
         uses: lycheeverse/lychee-action@v1
         with:
           # args: --base . --verbose --no-progress -a '200,403,429,500' './**/*.md' 
           # args: --config ./.github/workflows/lychee.toml './**/*.md'
-          args: --verbose --no-progress -a '200,403,429,500' --base . ${{inputs.additional-args }} ./**/*.md
+          args: --verbose --no-progress -a '200,403,429,500' --base . ./**/*.md
+          fail: true
+      - name: Link Checker user-supplied args
+        if: ${{ inputs.override-args }}
+        uses: lycheeverse/lychee-action@v1
+        with:
+          # args: --base . --verbose --no-progress -a '200,403,429,500' './**/*.md' 
+          # args: --config ./.github/workflows/lychee.toml './**/*.md'
+          args: ${{ inputs.override-args }}
           fail: true
       - name: Print the job summary
         if: ${{ inputs.message }}
