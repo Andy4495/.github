@@ -1,6 +1,6 @@
 # .github
 
-[![Check Markdown Links](https://github.com/Andy4495/.github/actions/workflows/CheckMarkdownLinks.yml/badge.svg)](https://github.com/Andy4495/.github/actions/workflows/CheckMarkdownLinks.yml)
+[![Check Markdown Links](https://github.com/Andy4495/.github/actions/workflows/check-links.yml/badge.svg)](https://github.com/Andy4495/.github/actions/workflows/check-links.yml)
 
 General templates, starter workflows, and reusable workflows for my repos.
 

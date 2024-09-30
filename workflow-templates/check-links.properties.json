@@ -1,0 +1,4 @@
+{
+    "name": "Check Links",
+    "description": "Workflow to check if URL references in Markdown files are valid."
+}
