@@ -45,7 +45,8 @@ jobs:
         with:
           # args: --base . --verbose --no-progress -a '200,403,429,500' './**/*.md' 
           # args: --config ./.github/workflows/lychee.toml './**/*.md'
-          args: ${{ inputs.exclude }} --verbose --no-progress -a '200,403,429,500' --base . ./**/*.md
+          # Need to use ./*.md _and_ ./**/.md because runner shell glob processing does not include current dir
+          args: ${{ inputs.exclude }} --verbose --no-progress -a '200,403,429,500' --base . ./*.md ./**/*.md
           fail: true
       - name: Link Checker user-supplied args
         if: ${{ inputs.override-args }}
