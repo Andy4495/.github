@@ -39,6 +39,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Print out *.md files to be analyzed
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress --dump-inputs ./*.md ./*/*.md
+          fail: true
       - name: Link Checker default args
         if: ${{ !inputs.override-args }}
         uses: lycheeverse/lychee-action@v1
