@@ -26,7 +26,7 @@ on:
         required: false
         type: string
       extra-input-files:
-        description: Additional files to scan for links beyond default *.md and **/*.md
+        description: Additional files to scan for links beyond default *.md **/*.md ./extras/**/*.md
         required: false
         type: string
       override-args:
@@ -56,7 +56,7 @@ jobs:
           # args: --config ./.github/workflows/lychee.toml './**/*.md'
           # Need to use ./*.md _and_ ./**/.md because runner shell glob processing does not include current dir
           # If there are files more than one directory below ., then need to add as extra-input-files
-          args: ${{ inputs.exclude }} --verbose --no-progress -a '200,403,429,500' --base . ./*.md ./*/*.md ${{ inputs.extra-input-files }}
+          args: ${{ inputs.exclude }} --verbose --no-progress -a '200,403,429,500' --base . ./*.md ./*/*.md ./extras/**/*.md ${{ inputs.extra-input-files }}
           fail: true
       - name: Link Checker user-supplied args
         if: ${{ inputs.override-args }}
