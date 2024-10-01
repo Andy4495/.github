@@ -46,7 +46,7 @@ jobs:
       - name: Print out *.md files to be analyzed
         uses: lycheeverse/lychee-action@v1
         with:
-          args: --verbose --no-progress --dump-inputs ./*.md ./*/*.md ${{ inputs.extra-input-files }}
+          args: --verbose --no-progress --dump-inputs ./*.md ./*/*.md  ./extras/**/*.md ${{ inputs.extra-input-files }}
           fail: true
       - name: Link Checker default args
         if: ${{ !inputs.override-args }}
