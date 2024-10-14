@@ -44,13 +44,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Print out *.md files to be analyzed
-        uses: lycheeverse/lychee-action@v1
+        uses: lycheeverse/lychee-action@v2
         with:
           args: --verbose --no-progress --dump-inputs ./*.md ./*/*.md  ./extras/**/*.md ${{ inputs.extra-input-files }}
           fail: true
       - name: Link Checker default args
         if: ${{ !inputs.override-args }}
-        uses: lycheeverse/lychee-action@v1
+        uses: lycheeverse/lychee-action@v2
         with:
           # args: --base . --verbose --no-progress -a '200,403,429,500' './**/*.md' 
           # args: --config ./.github/workflows/lychee.toml './**/*.md'
@@ -60,7 +60,7 @@ jobs:
           fail: true
       - name: Link Checker user-supplied args
         if: ${{ inputs.override-args }}
-        uses: lycheeverse/lychee-action@v1
+        uses: lycheeverse/lychee-action@v2
         with:
           # args: --base . --verbose --no-progress -a '200,403,429,500' './**/*.md' 
           # args: --config ./.github/workflows/lychee.toml './**/*.md'
