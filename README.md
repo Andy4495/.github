@@ -6,6 +6,8 @@ General templates, starter workflows, and reusable workflows for my repos.
 
 All the starter workflow are designed to call reusable workflows which are stored in the [.github/workflows][1] directory.
 
+Also includes a `.zshrc` file to make setting up a new system easier.
+
 ## License
 
 The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
