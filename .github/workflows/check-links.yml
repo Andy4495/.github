@@ -58,7 +58,7 @@ jobs:
           # Need to use ./*.md _and_ ./**/.md because runner shell glob processing does not include current dir
           # Need --exclude-path $PWD/lychee because act environment picks up the lychee/out.md file 
           # If there are files more than one directory below ., then need to add as extra-input-files
-          args: ${{ inputs.exclude }} --verbose --no-progress -a '200,403,429,500' --root-dir $PWD --exclude-path $PWD/lychee ./*.md ./*/*.md ./extras/**/*.md ${{ inputs.extra-input-files }}
+          args: ${{ inputs.exclude }} --verbose --no-progress -a '200,403,429,500' --root-dir $PWD --exclude-path out.md ./*.md ./*/*.md ./extras/**/*.md ${{ inputs.extra-input-files }}
           fail: true
       - name: Link Checker user-supplied args
         if: ${{ inputs.override-args }}
